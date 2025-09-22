@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Welcome to Student Management Dashboard</h1>
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('add_student') }}">Add Student</a>
+            <a href="{{ url_for('chatbot') }}">Chatbot</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Student List</h2>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Class</th>
+                <th>Marks</th>
+                <th>Attendance</th>
+                <th>Contact</th>
+                <th>QR Code</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for student in students %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.roll_no }}</td>
+                <td>{{ student.student_class }}</td>
+                <td>{{ student.marks }}</td>
+                <td>{{ student.attendance }}</td>
+                <td>{{ student.contact }}</td>
+                <td>
+                    <img src="{{ url_for('static', filename='qr_codes/' + student.roll_no + '.png') }}" width="100">
+                </td>
+                <td>
+                    <a href="{{ url_for('delete_student', id=student.id) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </main>    
+
+</body>
+
+</html>
