@@ -10,7 +10,7 @@ import random
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
@@ -44,8 +44,8 @@ def create_tables():
     db.create_all()
 
 def send_email(subject, body, to_email):
-    from_email = 'your_email@gmail.com'
-    from_password = 'your_app_password'  # Use App Password (recommended)
+    from_email = 'sfarhan3592@gmail.com'
+    from_password = os.environ.get
 
     msg = MIMEText(body)
     msg['Subject'] = subject
