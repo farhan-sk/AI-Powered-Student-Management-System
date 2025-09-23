@@ -62,17 +62,6 @@ def send_email(subject, body, to_email):
 def home():
     return redirect(url_for('login'))
 
-@app.route('/create_admin_user_one_time')
-def create_admin_user():
-    if User.query.first():
-        return 'An admin user already exists.'
-    
-    #create admin user
-    admin_user = User(username='Farhan.5599', password='Farhan@2006')
-    db.session.add(admin_user)
-    db.session.commit() 
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
