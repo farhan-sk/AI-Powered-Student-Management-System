@@ -5,3 +5,4 @@ qrcode==7.3
 gunicorn==20.1.0
 Werkzeug==2.2.3
 psycopg2-binary
+Pillow
