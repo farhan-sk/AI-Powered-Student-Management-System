@@ -126,11 +126,11 @@ def add_student():
         os.makedirs(qr_folder, exist_ok=True)
         qr_img.save(f'{qr_folder}/{roll_no}.png')
 
-        send_email(
-            subject="New Student Added",
-            body=f"Student {name} (Roll No: {roll_no}) has been successfully added.",
-            to_email="sfarhan3592@gmail.com"
-        )
+        #send_email(
+        #    subject="New Student Added",
+        #    body=f"Student {name} (Roll No: {roll_no}) has been successfully added.",
+        #    to_email="sfarhan3592@gmail.com"
+        #)
 
         flash('Student added successfully!')
         return redirect(url_for('dashboard'))
