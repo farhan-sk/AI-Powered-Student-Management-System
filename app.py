@@ -44,19 +44,31 @@ def create_tables():
     db.create_all()
 
 def send_email(subject, body, to_email):
+    print("DEBUG: Attemping to send email...")
     from_email = 'sfarhan3592@gmail.com'
-    from_password = os.environ.get
+    from_password = os.environ.get('GMAIL_APP_PASSWORD')
 
-    msg = MIMEText(body)
-    msg['Subject'] = subject
-    msg['From'] = from_email
-    msg['To'] = to_email
+    if not from_password:
+        print("DEBUG: FALAT-Email password not found in environment variables.")
+        return
+    
+    try:
+        msg = MIMEText(body)
+        msg['Subject'] = subject
+        msg['From'] = from_email
+        msg['To'] = to_email
 
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(from_email, from_password)
-    server.send_message(msg)
-    server.quit()
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        print("DEBUG: Connected to SMTP server. Login in...")
+        server.login(from_email, from_password)
+        print("DEBUG: Login successful. Sending message...")
+        server.send_message(msg)
+        print("DEBUG: Email sent successfully!")
+        server.quit()
+    except Exception as e:
+        print(f"DEBUG: FALAT-An error occurred: {e}")
+
 
 @app.route('/')
 def home():
