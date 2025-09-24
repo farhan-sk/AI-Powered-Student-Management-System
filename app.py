@@ -129,7 +129,7 @@ def add_student():
         send_email(
             subject="New Student Added",
             body=f"Student {name} (Roll No: {roll_no}) has been successfully added.",
-            to_email="your_notification_email@gmail.com"
+            to_email="sfarhan3592@gmail.com"
         )
 
         flash('Student added successfully!')
